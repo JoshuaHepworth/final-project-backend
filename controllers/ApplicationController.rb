@@ -15,7 +15,7 @@ class ApplicationController < Sinatra::Base
 			enable :cross_origin
 		end
 
-			set :allow_origin, :any
+	set :allow_origin, :any
 	set :allow_credentials, true
 	set :allow_methods, [:get, :post, :put, :patch, :delete, :options]
 
@@ -28,12 +28,12 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-  	# binding.pry
+  	binding.pry
   	{
   		status: 200, 
   		message: "This works"
   	}.to_json
 
   end
-		
+
 end

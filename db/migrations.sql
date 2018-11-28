@@ -27,7 +27,7 @@ CREATE TABLE comments(
 	upvotes INTEGER,
 	downvotes INTEGER,
 	article_id INTEGER REFERENCES articles(id)
-	comments_id INTEGER REFERENCES comments(id)
+	user_id INTEGER REFERENCES users(id)
 );
 
 CREATE TABLE user_articles(
