@@ -19,3 +19,6 @@ map('/api/user') {
 map('/api/article') {
 	run ArticleAPIController
 }
+map('/api/comment') {
+	run CommentAPIController
+}

@@ -23,7 +23,7 @@ CREATE TABLE articles(
 
 CREATE TABLE comments(
 	id SERIAL PRIMARY KEY,
-	text TEXT,
+	message TEXT,
 	user_id INTEGER REFERENCES users(id),
 	article_id INTEGER REFERENCES articles(id)
 );
