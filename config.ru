@@ -4,10 +4,12 @@ require 'sinatra/base'
 require './controllers/ApplicationController'
 require './controllers/UserAPIController'
 require './controllers/ArticleAPIController'
+require './controllers/CommentAPIController'
 
 #models
 require './models/UserModel'
 require './models/ArticleModel'
+require './models/CommentModel'
 
 #routes
 map('/'){

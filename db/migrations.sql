@@ -16,14 +16,30 @@ CREATE TABLE articles(
 	title VARCHAR(64),
 	description VARCHAR(260),
 	imgUrl VARCHAR(512),
-	apiId VARCHAR(64),
+	apiId INTEGER,
 	articleUrl VARCHAR(512),
-	user_id INTEGER REFERENCES users(id)
 );
 
 CREATE TABLE comments(
 	id SERIAL PRIMARY KEY,
 	message TEXT,
+	ts TIMESTAMP,
+	upvotes INTEGER,
+	downvotes INTEGER,
+	article_id INTEGER REFERENCES articles(id)
+	comments_id INTEGER REFERENCES comments(id)
+);
+
+CREATE TABLE user_articles(
+	id SERIAL PRIMARY KEY,
 	user_id INTEGER REFERENCES users(id),
 	article_id INTEGER REFERENCES articles(id)
 );
+
+-- CREATE TABLE user_comments(
+-- 	id SERIAL PRIMARY KEY,
+-- 	user_id INTEGER REFERENCES users(id),
+-- 	article_id INTEGER REFERENCES articles(id)
+-- 	comments_id INTEGER REFERENCES comments(id)
+-- );
+
