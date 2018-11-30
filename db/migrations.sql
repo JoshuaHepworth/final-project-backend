@@ -13,8 +13,8 @@ CREATE TABLE articles(
 	id SERIAL PRIMARY KEY,
 	source VARCHAR(64),
 	author VARCHAR(64),
-	title VARCHAR(64),
-	description VARCHAR(260),
+	title VARCHAR(255),
+	description VARCHAR(512),
 	img_url VARCHAR(512),
 	published_at TIMESTAMP,
 	article_url VARCHAR(512)

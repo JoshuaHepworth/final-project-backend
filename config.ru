@@ -8,9 +8,9 @@ require './controllers/CommentAPIController'
 
 #models
 require './models/UserModel'
+require './models/UserArticleModel'
 require './models/ArticleModel'
 require './models/CommentModel'
-require './models/UserArticleModel'
 
 #routes
 map('/'){

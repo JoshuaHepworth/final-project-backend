@@ -2,16 +2,33 @@ class UserAPIController < ApplicationController
 
 
 
-#get user
+	#get user
 	get '/' do 
 
-		user = User.find_by username: payload[:username]
+		user = User.find_by username: session[:username]
+		if !user 
+			{
+				status: 403,
+				message: "user not logged in"
+			}
+		else
 		{
 			status: 200,
 			message: "found user",
 			user: user
-		}
+		}.to_json
+		end
+	end
 
+	# get user articles
+	get '/articles' do
+		user = User.find_by username: session[:username]
+		# userArticle = UserArticle.find_by user_id: user.id
+		{
+			status: 200,
+			message: "Found users articles",
+			articles: user.articles
+		}.to_json
 	end
 
 
@@ -82,5 +99,14 @@ class UserAPIController < ApplicationController
 			message: "Logged out user #{username}"
 		}.to_json
 	end	
+	delete '/:id' do
+	user = User.find_by username: session[:username]
+	user.articles.destroy
+	# userArticle = UserArticle.find_by user_id: user.id
+	{
+		status: 200,
+		message: "Found users articles"
+	}.to_json
+end
 
 end

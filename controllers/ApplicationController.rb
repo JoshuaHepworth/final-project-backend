@@ -28,7 +28,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-  	# binding.pry
+  	binding.pry
   	{
   		status: 200, 
   		message: "This works"
