@@ -46,6 +46,7 @@ class CommentAPIController < ApplicationController
 			comment: comment
 		}.to_json
 	end
+	
 	# delete
 	delete '/:id' do
 		comment = Comment.find params[:id]

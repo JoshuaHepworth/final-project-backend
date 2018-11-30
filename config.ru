@@ -10,6 +10,7 @@ require './controllers/CommentAPIController'
 require './models/UserModel'
 require './models/ArticleModel'
 require './models/CommentModel'
+require './models/UserArticleModel'
 
 #routes
 map('/'){

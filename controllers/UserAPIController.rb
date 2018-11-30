@@ -1,5 +1,20 @@
 class UserAPIController < ApplicationController
 
+
+
+#get user
+	get '/' do 
+
+		user = User.find_by username: payload[:username]
+		{
+			status: 200,
+			message: "found user",
+			user: user
+		}
+
+	end
+
+
 #login
 	post '/login' do
 		payload_body = request.body.read
@@ -11,6 +26,9 @@ class UserAPIController < ApplicationController
 		if user && user.authenticate(pw)
 			session[:logged_in] = true
 			session[:username] = user.username
+			puts ""
+			puts "Here's the session right now after we logged in"
+			pp session
 			{
 				status: 200,
 				message: "#{user.username} has logged in!"

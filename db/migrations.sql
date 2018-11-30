@@ -15,9 +15,9 @@ CREATE TABLE articles(
 	author VARCHAR(64),
 	title VARCHAR(64),
 	description VARCHAR(260),
-	imgUrl VARCHAR(512),
-	apiId INTEGER,
-	articleUrl VARCHAR(512),
+	img_url VARCHAR(512),
+	published_at TIMESTAMP,
+	article_url VARCHAR(512)
 );
 
 CREATE TABLE comments(
@@ -26,7 +26,7 @@ CREATE TABLE comments(
 	ts TIMESTAMP,
 	upvotes INTEGER,
 	downvotes INTEGER,
-	article_id INTEGER REFERENCES articles(id)
+	article_id INTEGER REFERENCES articles(id),
 	user_id INTEGER REFERENCES users(id)
 );
 
@@ -36,10 +36,4 @@ CREATE TABLE user_articles(
 	article_id INTEGER REFERENCES articles(id)
 );
 
--- CREATE TABLE user_comments(
--- 	id SERIAL PRIMARY KEY,
--- 	user_id INTEGER REFERENCES users(id),
--- 	article_id INTEGER REFERENCES articles(id)
--- 	comments_id INTEGER REFERENCES comments(id)
--- );
 
