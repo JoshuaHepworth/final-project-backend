@@ -9,21 +9,63 @@ class CommentAPIController < ApplicationController
 		}.to_json
 	end
 
+	# take an article URL and show comments associated with that article
+	# get articles comments
+	get '/article/:id' do
+		article = Article.find_by article_id: params[:id]
+		puts '--------------'
+		pp payload
+		puts 'comments in article'
+		{
+			status: 200,
+			message: "Found article comments",
+			comments: article.comments
+		}.to_json
+	end
 
-	# create route
+
+	# posting comment route
 	post '/' do
 		payload_body = request.body.read
 		payload = JSON.parse(payload_body).symbolize_keys
+
 		# binding.pry
-		pp "hitting route"
+
+		puts "hitting route, here is payload -- check the article url we are use"
+		pp payload
 		
 		user = User.find_by username: session[:username]
-		article = Article.find params[:id]
+		# check if it's there
+		article = Article.find_by article_url: payload[:article]["url"]
+
+
+
+		puts ""
+		pp article 
+		puts " ^ theres the article we found"
+
+		if !article
+			# if its not there Add it
+			article = Article.new
+				# set the fields
+			article.source = payload[:article]["source"]["name"]
+			article.author = payload[:article]["author"]
+			article.title = payload[:article]["title"]
+			article.description = payload[:article]["description"]
+			article.img_url = payload[:article]["urlToImage"]
+			article.published_at = payload[:article]["publishedAt"]
+			article.article_url = payload[:article]["url"]
+			article.save
+		end
 		comment = Comment.new
-		comment.message = payload[:message]
+		comment.message = payload[:comment]
+		# comment.ts = #
+		comment.upvotes = 0
+		comment.downvotes = 0
 		comment.user_id = user.id
 		comment.article_id = article.id
 		comment.save
+
 		{
 			status: 200,
 			message: "Created Comment",

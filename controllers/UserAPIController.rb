@@ -99,14 +99,16 @@ class UserAPIController < ApplicationController
 			message: "Logged out user #{username}"
 		}.to_json
 	end	
-	delete '/:id' do
-	user = User.find_by username: session[:username]
-	user.articles.destroy
-	# userArticle = UserArticle.find_by user_id: user.id
-	{
-		status: 200,
-		message: "Found users articles"
-	}.to_json
-end
+
+	delete '/article/:id' do
+		article = UserArticle.find_by article_id: params[:id]
+		article.destroy
+		# userArticle = UserArticle.find_by user_id: user.id
+		{
+			status: 200,
+			message: "deleted article",
+			article: article
+		}.to_json
+	end
 
 end

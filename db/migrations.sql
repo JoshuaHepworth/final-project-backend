@@ -23,7 +23,7 @@ CREATE TABLE articles(
 CREATE TABLE comments(
 	id SERIAL PRIMARY KEY,
 	message TEXT,
-	ts TIMESTAMP,
+	ts TIMESTAMP DEFAULT NOW(),
 	upvotes INTEGER,
 	downvotes INTEGER,
 	article_id INTEGER REFERENCES articles(id),
