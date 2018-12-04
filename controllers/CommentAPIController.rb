@@ -12,7 +12,8 @@ class CommentAPIController < ApplicationController
 	# take an article URL and show comments associated with that article
 	# get articles comments
 	get '/article/:id' do
-		article = Article.find_by article_id: params[:id]
+		article = Article.find_by article_url: params[:url]
+		# binding.pry
 		puts '--------------'
 		pp payload
 		puts 'comments in article'

@@ -29,6 +29,7 @@ GEM
     rack (2.0.6)
     rack-protection (2.0.4)
       rack
+    rb-readline (0.5.5)
     sinatra (2.0.4)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -51,6 +52,7 @@ DEPENDENCIES
   json
   pg
   pry
+  rb-readline
   sinatra
   sinatra-activerecord
   sinatra-cross_origin
