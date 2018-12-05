@@ -1,6 +1,6 @@
 class CommentAPIController < ApplicationController
 	
-	# index for comments
+	# index for comments 
 	get '/' do
 		user = User.find_by username: session[:username]
 		{
@@ -11,17 +11,23 @@ class CommentAPIController < ApplicationController
 
 	# take an article URL and show comments associated with that article
 	# get articles comments
-	get '/article/:id' do
-		article = Article.find_by article_url: params[:url]
-		# binding.pry
-		puts '--------------'
-		# pp params
-		puts 'THESE ARE THE PARAMS'
-		{
-			status: 200,
-			message: "Found article comments",
-			comments: article.comments
-		}.to_json
+	post '/article' do
+		payload_body = request.body.read
+		payload = JSON.parse(payload_body).symbolize_keys
+
+		article = Article.find_by article_url: payload[:url]
+		if !article
+			{
+				status: 200,
+				message: "Article comments don't exist"
+			}
+		else
+			{
+				status: 200,
+				message: "Found article comments",
+				comments: article.comments
+			}.to_json
+		end
 	end
 
 
@@ -38,8 +44,6 @@ class CommentAPIController < ApplicationController
 		user = User.find_by username: session[:username]
 		# check if it's there
 		article = Article.find_by article_url: payload[:article]["url"]
-
-
 
 		puts ""
 		pp article 

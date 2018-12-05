@@ -15,7 +15,8 @@ class UserAPIController < ApplicationController
 		{
 			status: 200,
 			message: "found user",
-			user: user
+			user: user,
+			comments: user.comments
 		}.to_json
 		end
 	end
