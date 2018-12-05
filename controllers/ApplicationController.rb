@@ -5,10 +5,8 @@ class ApplicationController < Sinatra::Base
 
 	use Rack::Session::Cookie, :key =>'rack.session',:path => '/',:secret => 'my_secret'
 
-	ActiveRecord::Base.establish_connection(
-		:adapter => 'postgresql',
-		:database => 'news_app'
-		)
+	require './config/environments'
+	
 		register Sinatra::CrossOrigin
 
 		configure do
