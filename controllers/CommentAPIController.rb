@@ -86,6 +86,10 @@ class CommentAPIController < ApplicationController
 		comment.article_id = article.id
 		comment.save
 
+		puts ""
+		puts "here's the comment we're about to send back"
+		pp comment
+
 		{
 			status: 200,
 			message: "Created Comment",
