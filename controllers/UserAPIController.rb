@@ -10,7 +10,7 @@ class UserAPIController < ApplicationController
 			{
 				status: 403,
 				message: "user not logged in"
-			}
+			}.to_json
 		else
 		{
 			status: 200,

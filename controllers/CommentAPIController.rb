@@ -15,17 +15,32 @@ class CommentAPIController < ApplicationController
 		payload_body = request.body.read
 		payload = JSON.parse(payload_body).symbolize_keys
 
+		user = User.find_by username: session[:username]
 		article = Article.find_by article_url: payload[:url]
 		if !article
 			{
 				status: 200,
-				message: "Article comments don't exist"
-			}
+				message: "Article comments don't exist",
+				comments: []
+			}.to_json
 		else
+			# use .map to create an array that has the username attached to each comment hash
+			comment_author = article.comments.map do |comment|
+				{
+					username: comment.user.username,
+					comment: comment
+				}
+			end
+			puts "=-------"
+			pp comment_author
+			puts "--this is the comennt author"
+			puts '--------------'
+			pp article.comments
+			puts "this is article comments"
 			{
 				status: 200,
 				message: "Found article comments",
-				comments: article.comments
+				comments: comment_author
 			}.to_json
 		end
 	end
@@ -74,7 +89,8 @@ class CommentAPIController < ApplicationController
 		{
 			status: 200,
 			message: "Created Comment",
-			comment: comment
+			comment: comment,
+			user: comment.user
 		}.to_json
 	end
 
