@@ -106,7 +106,7 @@ class UserAPIController < ApplicationController
 		# userArticle = UserArticle.find_by user_id: user.id
 		{
 			status: 200,
-			message: "deleted article",
+			message: "Removed Article!",
 			article: article
 		}.to_json
 	end

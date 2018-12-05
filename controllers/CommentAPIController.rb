@@ -15,8 +15,8 @@ class CommentAPIController < ApplicationController
 		article = Article.find_by article_url: params[:url]
 		# binding.pry
 		puts '--------------'
-		pp payload
-		puts 'comments in article'
+		# pp params
+		puts 'THESE ARE THE PARAMS'
 		{
 			status: 200,
 			message: "Found article comments",
