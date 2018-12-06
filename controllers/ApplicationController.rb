@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
 			enable :cross_origin
 		end
 
- allowed = ENV['RACK_ENV'] == "development" ?  'http://localhost:3000' : 'http://localhost:something'
+ allowed = ENV['RACK_ENV'] == "development" ?  'http://localhost:3000' : 'https://ancient-beyond-32349.herokuapp.com/'
 
 	set :allow_origin, allowed
 	set :allow_credentials, true
